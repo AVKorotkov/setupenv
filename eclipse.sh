@@ -1,10 +1,5 @@
 #!/bin/bash
 
-source ~/user.cfg.sh
-
-check_no_root
-check_debian
-
 ARCH=$(uname -m)
 if [ "$ARCH" = "x86_64" ]
 	then
@@ -26,5 +21,3 @@ mv eclipse.desktop ~/.local/share/applications/
 ln -s ~/src/eclipse/eclipse ~/bin/eclipse
 mv ~/src/eclipse/eclipse.ini ~/src/eclipse/eclipse.ini.original
 mv eclipse.ini ~/src/eclipse/
-
-this_is_done

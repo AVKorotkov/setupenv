@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=Eclipse Luna
+Comment=
+GenericName=Eclipse
+Keywords=
+Exec=eclipse
+Terminal=false
+Type=Application
+Icon=~/src/eclipse/icon.xpm
+Path=
+Categories=Application;Development;Java;IDE
+NoDisplay=false

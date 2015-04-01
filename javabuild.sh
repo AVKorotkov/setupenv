@@ -1,10 +1,5 @@
 #!/bin/bash
 
-source ~/user.cfg.sh
-
-check_no_root
-check_debian
-
 BASE_URL="http://www.oracle.com"
 
 INDEX="/tmp/JDK-index.html"
@@ -52,5 +47,3 @@ wget $(echo -n $WGET_OPTS) -O $DOWNLOAD_FILE $DOWNLOAD_URL
 #wget -c --header="Cookie: oraclelicense=accept-securebackup-cookie" -O $DOWNLOAD_FILE $DOWNLOAD_URL
 
 make-jpkg $DOWNLOAD_FILE
-
-this_is_done

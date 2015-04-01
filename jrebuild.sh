@@ -1,10 +1,5 @@
 #!/bin/bash
 
-source ~/user.cfg.sh
-
-check_no_root
-check_debian
-
 JRE_LANG=$(locale | grep LANG= | awk -F= '{print $2}' | awk -F_ '{print $1}')
 
 if	[ $JRE_LANG != "ru" ]
@@ -38,5 +33,3 @@ WGET_OPTS="-c --header 'Cookie: oraclelicense=accept-securebackup-cookie'"
 wget $WGET_OPTS -O $DOWNLOAD_FILE $DOWNLOAD_URL
 
 make-jpkg $DOWNLOAD_FILE
-
-this_is_done

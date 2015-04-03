@@ -10,6 +10,8 @@ check_root
 check_debian
 check_step "sysconf.sh"
 
+# Установка Java
+
 # настройка Java
 
 JAVA_JDK_ORACLE=$(update-alternatives --list java | egrep 'jdk-[0-9]+-oracle')
@@ -35,6 +37,8 @@ elif [ "$JAVA_JRE_ORACLE" != "" ]
 		update-alternatives --set java $JAVA_JRE_ORACLE
 		update-alternatives --set javaws $JAVAWS_JRE_ORACLE
 fi
+
+# настройка MySQL
 
 
 

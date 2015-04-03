@@ -13,7 +13,7 @@ cp /home/$DEB_USER/setupenv/softlist.txt .
 cp /home/$DEB_USER/setupenv/optsoftlist.txt .
 
 chown root:root system.cfg.sh postconf.sh softlist.txt optsoftlist.txt
-chmod u+x system.cfg.sh postconf.sh
+#chmod u+x system.cfg.sh postconf.sh
 
 . system.cfg.sh
 
@@ -107,6 +107,13 @@ for GROUP in $GROUP_LIST
 			then adduser $DEB_USER $GROUP
 		fi
 done
+
+# Установка VirtualBox Guest Additions
+
+mount /media/cdrom
+cd /media/cdrom
+sh VBoxLinuxAdditions.run
+cd
 
 # Устаногвка дополнительного ПО
 

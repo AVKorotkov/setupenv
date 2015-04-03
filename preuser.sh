@@ -40,7 +40,7 @@ for i in $(ls -A setupenv | egrep '(sh|ini|desktop)$')
 	do cp -u $i ~
 done
 
-chmod u+x *.sh
+#chmod u+x *.sh
 cp sysconf.sh /tmp
 
 . user.cfg.sh

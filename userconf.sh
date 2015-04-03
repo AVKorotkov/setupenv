@@ -10,21 +10,11 @@ check_debian
 description
 ask_for_continue
 
-# в .bashrc поместить JAVA_HOME
-
-echo 'export JAVA_HOME=$(readlink -f /usr/bin/javac | sed "s:/bin/javac::")' >> ~/.bashrc
-echo 'export PATH=$JAVA_HOME/bin:$PATH' >> ~/.bashrc
-
-. ~/.bashrc
-
-. eclipse.sh
-
 . javabuild.sh
 
 . jrebuild.sh
 
-
-
+. eclipse.sh
 
 step_write
 

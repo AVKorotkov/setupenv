@@ -25,6 +25,8 @@ php5
 php5-cli
 php5-cgi
 php5-mysqlnd
+phpsysinfo
+php-config
 ruby1.9.1-full
 ruby-mysql2
 python-mysqldb

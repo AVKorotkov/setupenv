@@ -27,6 +27,7 @@ function check_debian() {
 
 function this_is_done() {
 cat <<ThisIsDone
+
 ==========
 | ГОТОВО |
 ==========

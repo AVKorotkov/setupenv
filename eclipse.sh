@@ -31,6 +31,12 @@ tar zxvf $DOWNLOAD_FILE -C ~/src
 
 # настройка
 
+if ! [[ -d ".local/share/applications" ]]
+	then
+		mkdir .local/share/applications
+fi
+
+sed -i -n -e "s/Icon=~/Icon=\/home\/$DEB_USER/" -e "p" eclipse.desktop
 mv eclipse.desktop ~/.local/share/applications/
 ln -s ~/src/eclipse/eclipse ~/bin/eclipse
 cp ~/src/eclipse/eclipse.ini ~/src/eclipse/eclipse.ini.original

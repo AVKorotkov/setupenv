@@ -60,7 +60,7 @@ function step_write() {
 function description() {
 	tail -n +3 $0 |
 	while read line && [[ $line != "" ]]
-		do echo $line | cut -d " " -f 2
+		do echo $line | cut -d " " -f 2-
 	done
 	echo ""
 }

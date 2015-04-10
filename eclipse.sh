@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # Этот скрипт скачивает, устанавливает и настраивает
-# IDE Eclipse. Запускается из скрипта userconf.sh
+# IDE Eclipse. Запускается из скрипта preuser.sh
 
-if [[ "$(echo "$0" | sed 's/.*\///g')" != "userconf.sh" ]]
+if [[ "$(echo "$0" | sed 's/.*\///g')" != "preuser.sh" ]]
 	then
-		echo "Этот скрипт вызывается из userconf.sh. Завершаем..."
+		echo "Этот скрипт вызывается из preuser.sh. Завершаем..."
 		exit 0
 fi
 

@@ -1,6 +1,13 @@
 #!/bin/bash
 
-# Этот скрипт скачивает RStudio
+# Этот скрипт скачивает RStudio.
+# Запускается из скрипта preuser.sh
+
+if [[ "$(echo "$0" | sed 's/.*\///g')" != "preuser.sh" ]]
+	then
+		echo "Этот скрипт вызывается из preuser.sh. Завершаем..."
+		exit 0
+fi
 
 echo "Скачивание RStudio..."
 

@@ -1,5 +1,15 @@
 #!/bin/bash
 
+# Этот скрипт скачивает RStudio
+
+echo "Скачивание RStudio..."
+
+if [[ "$(echo "$0" | sed 's/.*\///g')" != "userconf.sh" ]]
+	then
+		echo "Этот скрипт вызывается из userconf.sh. Завершаем..."
+		exit 0
+fi
+
 BASE_URL="http://www.rstudio.com/products/rstudio/download/"
 
 SOURCE_URL="/tmp/rstudio-download.html"
@@ -15,3 +25,5 @@ if [ "$ARCH" = "x86_64" ]
 fi
 
 wget -c $DOWNLOAD_URL
+
+echo "Скачивание RStudio завершено."

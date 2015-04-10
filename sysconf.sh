@@ -3,16 +3,20 @@
 # Этот скрипт делает настройку системы. Его
 # нужно суперпользователю выполнить первым.
 
-DEB_USER=$(grep 1000 /etc/passwd | awk -F: '{print $1}')
+#DEB_USER=$(grep 1000 /etc/passwd | awk -F: '{print $1}')
 
-cp /home/$DEB_USER/setupenv/system.cfg.sh .
-#cp /home/$DEB_USER/setupenv/sysconf.sh .
-#cp /home/$DEB_USER/setupenv/setup.sh .
-cp /home/$DEB_USER/setupenv/postconf.sh .
-cp /home/$DEB_USER/setupenv/softlist.txt .
-cp /home/$DEB_USER/setupenv/optsoftlist.txt .
+DEB_USER=$(who -m | awk '{print $1}')
+SETUPENV="/home/$DEB_USER/setupenv"
 
-chown root:root system.cfg.sh postconf.sh softlist.txt optsoftlist.txt
+cp $SETUPENV/system.cfg.sh .
+#cp $SETUPENV/sysconf.sh .
+#cp $SETUPENV/setup.sh .
+cp $SETUPENV/postconf.sh .
+cp $SETUPENV/softlist.txt .
+cp $SETUPENV/optsoftlist.txt .
+cp $SETUPENV/utf.cnf .
+
+chown root:root system.cfg.sh postconf.sh softlist.txt optsoftlist.txt utf.cnf
 #chmod u+x system.cfg.sh postconf.sh
 
 . system.cfg.sh
@@ -20,8 +24,11 @@ chown root:root system.cfg.sh postconf.sh softlist.txt optsoftlist.txt
 description
 check_root
 check_debian
+check_step "preuser.sh"
+ask_for_continue
 
 echo "DEB_USER=\"$DEB_USER\"" >> system.cfg.sh
+echo "SETUPENV=\"$SETUPENV\"" >> system.cfg.sh
 
 #
 #. system.cfg.sh
@@ -59,15 +66,25 @@ apt-key adv --keyserver keys.gnupg.net --recv-key 381BA480
 #wget -c http://mozilla.debian.net/pkg-mozilla-archive-keyring_1.1_all.deb
 #dpkg -i pkg-mozilla-archive-keyring_1.1_all.deb
 
+DEBIAN_FRONTEND=noninteractive 
+DEBCONF_NOWARNINGS="yes"
+DEBCONF_NONINTERACTIVE_SEEN=true
+
 # обновление списка пакетов
 
-aptitude update -y
+echo "Обновление списка пакетов..."
+aptitude update -yq
+echo "Обновление списка пакетов завершено."
 
 # обновление системы
 
-aptitude safe-upgrade -y
+echo "Обновление системы..."
+aptitude safe-upgrade -yq
+echo "Обновление системы завершено."
 
 # установка последнего ядра и пакета заголовков
+
+echo "Установка последнего ядра и пакета заголовков..."
 
 ARCH=$(uname -m)
 if [ "$ARCH" = "x86_64" ]
@@ -82,13 +99,14 @@ fi
 # aptitude -F %p search linux-headers-3.1 | sed -n -e 's/ //gp' | egrep '586$'
 # aptitude -F %p search linux-image-3.1 | sed -n -e 's/ //gp' | egrep '586$'
 
-aptitude -t wheezy-backports install $KERNEL $HEADERS -y
+aptitude -t wheezy-backports install $KERNEL $HEADERS -yq
+echo "Установка последнего ядра и пакета заголовков завершена."
 
-# Устаногвка ПО
+# Установка ПО
 
+echo "Начало установки ПО..."
 DEB_LIST=$(cat softlist.txt)
-
-aptitude -t wheezy-backports install $DEB_LIST -y
+aptitude -t wheezy-backports install $DEB_LIST -yq
 
 # добавить
 # rsync
@@ -96,7 +114,37 @@ aptitude -t wheezy-backports install $DEB_LIST -y
 # gksu
 # gedit
 
-# добавить пользователя в нужные группы
+echo "Установка ПО завершена."
+
+# настройка MySQL на использование UTF-8
+
+mv utf.cnf /etc/mysql/conf.d/
+service mysql stop
+service mysql start
+
+# Установка дополнительного ПО
+
+echo "Установить дополнительное ПО?"
+
+stty -icanon
+echo -n "Нажмите клавишу Y для установки или любую другую для выхода "
+READCHAR=$(dd if=/dev/tty bs=1 count=1 2>/dev/null)
+case "$READCHAR" in
+	y|Y)
+		echo ""
+		echo "Начало установки дополнительного ПО..."
+		DEB_LIST=$(cat optsoftlist.txt)
+		aptitude -t wheezy-backports install $DEB_LIST -yq
+		dpkg -i /home/$DEB_USER/rstudio*.deb
+		echo "Установка дополнительного ПО завершена."
+		;;
+	*)
+		echo ""
+		;;
+esac
+stty icanon
+
+# Добавить пользователя в нужные группы
 
 GROUP_LIST="cdrom audio fuse plugdev video www-data"
 
@@ -110,30 +158,37 @@ done
 
 # Установка VirtualBox Guest Additions
 
-mount /media/cdrom
+echo "Начало установки VirtualBox Guest Additions..."
+mount -o ro /media/cdrom
 cd /media/cdrom
+IS_CD_VBGA=$(ls -lA | awk '{print $9}' | grep 'VBoxLinuxAdditions.run')
+while [[ $IS_CD_VBGA = "" ]]
+	do
+		cd
+		umount /media/cdrom
+		echo "VBoxGuestAdditions не находится в виртуальном приводе."
+		echo "В нижней панели виртуальной машины выберите образ"
+		echo "оптического диска VBoxGuestAdditions и повторите попытку."
+		echo -n "Повторить (Y/N)? "
+		read ANSWER
+		if [[ ${ANSWER^^} = "Y" ]]
+			then
+				mount -o ro /media/cdrom
+			else
+				echo "Установка VirtualBox Guest Additions не выполнена."
+				exit 1
+		fi
+		cd /media/cdrom
+		IS_CD_VBGA=$(ls -lA | awk '{print $9}' | grep 'VBoxLinuxAdditions.run')
+done
+
 sh VBoxLinuxAdditions.run
 cd
 
-# Устаногвка дополнительного ПО
-
-echo "Установить дополнительное ПО?"
-
-stty -icanon
-echo -n "Нажмите клавишу Y для установки или любую другую для выхода "
-READCHAR=$(dd if=/dev/tty bs=1 count=1 2>/dev/null)
-case "$READCHAR" in
-	y|Y)
-		echo ""
-		DEB_LIST=$(cat optsoftlist.txt)
-		aptitude -t wheezy-backports install $DEB_LIST -y
-		dpkg -i /home/$DEB_USER/rstudio*.deb
-		;;
-	*)
-		echo ""
-		;;
-esac
-stty icanon
+echo "Установка VirtualBox Guest Additions завершена."
+echo "Перезагрузите компьютер для того, чтобы"
+echo "виртуальная машина начала их использовать."
+echo ""
 
 step_write
 

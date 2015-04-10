@@ -27,30 +27,41 @@ fi
 # загрузить setupenv, если отсутствует
 # или обновить до последней версии
 
+echo "Обновление репозитория..."
+
 if [[ -d "setupenv" ]]
 	then
 		cd setupenv
 		git pull
-		cd
 	else
 		git clone https://github.com/AVKorotkov/setupenv
+		cd setupenv
 fi
 
-for i in $(ls -A setupenv | egrep '(sh|ini|desktop)$')
+echo "Обновление репозитория завершено."
+
+for i in $(ls -A . | egrep '(sh|desktop|cnf)$')
 	do cp -u $i ~
 done
 
-#chmod u+x *.sh
-cp sysconf.sh /tmp
+cd
 
 . user.cfg.sh
 
+description
 check_no_root
 check_debian
-description
 ask_for_continue
 
+# Установка IDE Eclipse
+
+. eclipse.sh
+
+# Получение RStudio
+
 . rstudio.sh
+
+cp sysconf.sh /tmp
 
 step_write
 

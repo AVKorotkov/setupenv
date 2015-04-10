@@ -1,5 +1,7 @@
 #!/bin/bash
 
+DEB_USER=$(who -m | awk '{print $1}')
+
 function error_msg() {
 	local MSG="${1}"
 	echo "${MSG}"
@@ -51,19 +53,19 @@ function ask_for_continue() {
 }
 
 function step_write() {
-	echo "# $(echo "$0" | sed 's/.*\///g')" >> system.cfg.sh
+	echo "# $(echo "$0" | sed 's/.*\///g')" >> /home/$DEB_USER/user.cfg.sh
 }
 
 function description() {
 	tail -n +3 $0 |
 	while read line && [[ $line != "" ]]
-		do echo $line | cut -d " " -f 2-
-	done 
+		do echo $line | cut -d " " -f 2
+	done
 }
 
 function check_step() {
 	STEP_TO_CHECK=$1
-	STEP=$(tail -n1 system.cfg.sh | awk '{print $2}')
+	STEP=$(tail -n1 /home/$DEB_USER/user.cfg.sh | awk '{print $2}')
 	if [ $STEP_TO_CHECK != $STEP ]
 		then
 			echo "Вначале следует выполнить скрипт $STEP_TO_CHECK"

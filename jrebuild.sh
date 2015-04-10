@@ -1,5 +1,16 @@
 #!/bin/bash
 
+# Этот скрипт скачивает Oracle JRE и собирает deb-пакет.
+# Запускается из скрипта userconf.sh
+
+echo "Скачивание Oracle JRE..."
+
+if [[ "$(echo "$0" | sed 's/.*\///g')" != "userconf.sh" ]]
+	then
+		echo "Этот скрипт вызывается из userconf.sh. Завершаем..."
+		exit 0
+fi
+
 JRE_LANG=$(locale | grep LANG= | awk -F= '{print $2}' | awk -F_ '{print $1}')
 
 if	[ $JRE_LANG != "ru" ]
@@ -32,4 +43,9 @@ WGET_OPTS="-c --header 'Cookie: oraclelicense=accept-securebackup-cookie'"
 
 wget $WGET_OPTS -O $DOWNLOAD_FILE $DOWNLOAD_URL
 
+echo "Скачивание Oracle JRE завершено."
+echo "Создание deb-пакета Oracle JRE..."
+
 make-jpkg $DOWNLOAD_FILE
+
+echo "Создание deb-пакета Oracle JRE завершено."

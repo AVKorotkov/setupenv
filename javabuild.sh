@@ -1,5 +1,16 @@
 #!/bin/bash
 
+# Этот скрипт скачивает Oracle JDK и собирает deb-пакет.
+# Запускается из скрипта userconf.sh
+
+echo "Скачивание Oracle JDK..."
+
+if [[ "$(echo "$0" | sed 's/.*\///g')" != "userconf.sh" ]]
+	then
+		echo "Этот скрипт вызывается из userconf.sh. Завершаем..."
+		exit 0
+fi
+
 BASE_URL="http://www.oracle.com"
 
 INDEX="/tmp/JDK-index.html"
@@ -46,4 +57,9 @@ wget $(echo -n $WGET_OPTS) -O $DOWNLOAD_FILE $DOWNLOAD_URL
 
 #wget -c --header="Cookie: oraclelicense=accept-securebackup-cookie" -O $DOWNLOAD_FILE $DOWNLOAD_URL
 
+echo "Скачивание Oracle JDK завершено."
+echo "Создание deb-пакета Oracle JDK..."
+
 make-jpkg $DOWNLOAD_FILE
+
+echo "Создание deb-пакета Oracle JDK завершено."

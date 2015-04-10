@@ -14,7 +14,6 @@ chmod 700 ~
 if ! [[ -d "~/bin" ]]
 	then
 		mkdir ~/bin
-		source ~/.profile
 fi
 
 # создать ~/src, если отсутствует

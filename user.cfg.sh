@@ -58,7 +58,8 @@ function description() {
 	tail -n +3 $0 |
 	while read line && [[ $line != "" ]]
 		do echo $line | cut -d " " -f 2-
-	done 
+	done
+	echo ""
 }
 
 function check_step() {

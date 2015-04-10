@@ -61,6 +61,7 @@ function description() {
 	while read line && [[ $line != "" ]]
 		do echo $line | cut -d " " -f 2
 	done
+	echo ""
 }
 
 function check_step() {

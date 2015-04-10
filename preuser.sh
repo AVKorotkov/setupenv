@@ -11,16 +11,16 @@ chmod 700 ~
 
 # создать ~/bin, если отсутствует
 
-if ! [[ -d "~/bin" ]]
+if ! [[ -d "bin" ]]
 	then
-		mkdir ~/bin
+		mkdir bin
 fi
 
 # создать ~/src, если отсутствует
 
-if ! [[ -d "~/src" ]]
+if ! [[ -d "src" ]]
 	then
-		mkdir ~/src
+		mkdir src
 fi
 
 # загрузить setupenv, если отсутствует

@@ -40,7 +40,7 @@ fi
 echo "Обновление репозитория завершено."
 
 for i in $(ls -A . | egrep '(sh|desktop|cnf|rc)$')
-	do cp -u $i ~
+	do cp $i ~
 done
 
 cd

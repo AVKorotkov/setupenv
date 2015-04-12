@@ -1,6 +1,11 @@
 #!/bin/bash
 
 DEB_USER=$(who -m | awk '{print $1}')
+DEBIAN_FRONTEND=noninteractive 
+DEBCONF_NOWARNINGS="yes"
+DEBCONF_NONINTERACTIVE_SEEN=true
+
+export DEB_USER DEBIAN_FRONTEND DEBCONF_NOWARNINGS DEBCONF_NONINTERACTIVE_SEEN
 
 function error_msg() {
 	local MSG="${1}"

@@ -41,11 +41,12 @@ echo "SETUPENV=\"$SETUPENV\"" >> system.cfg.sh
 
 # настройка репозиториев
 
-echo "deb http://ftp.debian.org/debian/ wheezy-backports main contrib non-free" >> /etc/apt/sources.list
-echo "deb-src http://ftp.debian.org/debian/ wheezy-backports main contrib non-free" >> /etc/apt/sources.list
 echo "" >> /etc/apt/sources.list
-echo "deb http://ftp.debian.org/debian/ wheezy-proposed-updates main contrib non-free" >> /etc/apt/sources.list
-echo "deb-src http://ftp.debian.org/debian/ wheezy-proposed-updates main contrib non-free" >> /etc/apt/sources.list
+echo "deb http://mirror.yandex.ru/debian/ wheezy-backports main contrib non-free" >> /etc/apt/sources.list
+echo "deb-src http://mirror.yandex.ru/debian/ wheezy-backports main contrib non-free" >> /etc/apt/sources.list
+echo "" >> /etc/apt/sources.list
+echo "deb http://mirror.yandex.ru/debian/ wheezy-proposed-updates main contrib non-free" >> /etc/apt/sources.list
+echo "deb-src http://mirror.yandex.ru/debian/ wheezy-proposed-updates main contrib non-free" >> /etc/apt/sources.list
 
 echo "deb http://debian.neo4j.org/repo stable/" > /etc/apt/sources.list.d/neo4j.list
 echo "deb http://deb.opera.com/opera/ stable non-free" > /etc/apt/sources.list.d/opera.list
@@ -65,10 +66,6 @@ apt-key adv --keyserver keys.gnupg.net --recv-key 381BA480
 
 #wget -c http://mozilla.debian.net/pkg-mozilla-archive-keyring_1.1_all.deb
 #dpkg -i pkg-mozilla-archive-keyring_1.1_all.deb
-
-DEBIAN_FRONTEND=noninteractive 
-DEBCONF_NOWARNINGS="yes"
-DEBCONF_NONINTERACTIVE_SEEN=true
 
 # обновление списка пакетов
 
@@ -135,6 +132,8 @@ case "$READCHAR" in
 		echo "Начало установки дополнительного ПО..."
 		DEB_LIST=$(cat optsoftlist.txt)
 		aptitude -t wheezy-backports install $DEB_LIST -yq
+		aptitude -t wheezy-backports install libreoffice-writer2latex -yq
+		aptitude -t wheezy-backports install libreoffice-writer2xhtml -yq
 		dpkg -i /home/$DEB_USER/rstudio*.deb
 		echo "Установка дополнительного ПО завершена."
 		;;

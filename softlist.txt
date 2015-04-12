@@ -45,6 +45,8 @@ mysql-server
 mysql-utilities
 mysql-workbench
 java-package
-kwrite
 evince
 geeqie
+gedit
+gksu
+rsync

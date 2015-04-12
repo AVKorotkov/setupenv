@@ -49,8 +49,6 @@ libreoffice-java-common
 libreoffice-l10n-ru
 libreoffice-style-galaxy
 libreoffice-style-tango
-libreoffice-writer2latex
-libreoffice-writer2xhtml
 maxima
 texmacs
 r-base

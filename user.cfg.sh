@@ -52,10 +52,11 @@ function ask_for_continue() {
 }
 
 function step_write() {
-	echo "# $(echo "$0" | sed 's/.*\///g')" >> user.cfg.sh
+	echo "# $(echo "$0" | sed 's/.*\///g')" >> step.txt
 }
 
 function description() {
+	echo ""
 	tail -n +3 $0 |
 	while read line && [[ $line != "" ]]
 		do echo $line | cut -d " " -f 2-
@@ -65,7 +66,7 @@ function description() {
 
 function check_step() {
 	STEP_TO_CHECK=$1
-	STEP=$(tail -n1 user.cfg.sh | awk '{print $2}')
+	STEP=$(tail -n1 step.txt | awk '{print $2}')
 	if [[ "$STEP_TO_CHECK" != "$STEP" ]]
 		then
 			echo "Вначале следует выполнить скрипт $STEP_TO_CHECK"

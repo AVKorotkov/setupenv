@@ -80,3 +80,14 @@ function check_step() {
 			exit 0
 	fi
 }
+
+function self_check() {
+	SELF_NAME=`basename $BASH_SOURCE`
+	PARENT_NAME=`basename $0`
+	if [[ "$SELF_NAME" = "$PARENT_NAME" ]]
+		then
+			echo "Данный скрипт вызывается на выполнение из других скриптов."
+	fi
+}
+
+self_check

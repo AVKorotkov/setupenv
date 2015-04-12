@@ -1,7 +1,11 @@
 #!/bin/bash
 
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Этот скрипт скачивает Oracle JRE и собирает deb-пакет.
 # Запускается из скрипта userconf.sh
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+WGETRC=".wgetjavarc"
 
 echo "Скачивание Oracle JRE..."
 
@@ -39,13 +43,14 @@ if [ "$ARCH" = "x86_64" ]
 		DOWNLOAD_FILE="jre-$(echo -n $JRE_VERSION)u$JRE_UPDATE-linux-i586.tar.gz"
 fi
 
-WGET_OPTS="-c --header 'Cookie: oraclelicense=accept-securebackup-cookie'"
-
-wget $WGET_OPTS -O $DOWNLOAD_FILE $DOWNLOAD_URL
+wget -O $DOWNLOAD_FILE $DOWNLOAD_URL
 
 echo "Скачивание Oracle JRE завершено."
+echo ""
 echo "Создание deb-пакета Oracle JRE..."
+echo ""
 
-make-jpkg $DOWNLOAD_FILE
+make-jpkg $DOWNLOAD_FILE | yes
 
 echo "Создание deb-пакета Oracle JRE завершено."
+echo ""

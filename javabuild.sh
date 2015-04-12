@@ -1,7 +1,9 @@
 #!/bin/bash
 
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Этот скрипт скачивает Oracle JDK и собирает deb-пакет.
 # Запускается из скрипта userconf.sh
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 echo "Скачивание Oracle JDK..."
 
@@ -55,8 +57,11 @@ wget --config=.wgetjavarc -O $DOWNLOAD_FILE $DOWNLOAD_URL
 #wget -c --header="Cookie: oraclelicense=accept-securebackup-cookie" -O $DOWNLOAD_FILE $DOWNLOAD_URL
 
 echo "Скачивание Oracle JDK завершено."
+echo ""
 echo "Создание deb-пакета Oracle JDK..."
+echo ""
 
-make-jpkg $DOWNLOAD_FILE
+make-jpkg $DOWNLOAD_FILE | yes
 
 echo "Создание deb-пакета Oracle JDK завершено."
+echo ""

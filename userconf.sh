@@ -1,7 +1,9 @@
 #!/bin/bash
 
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Этот скрипт выполняет основные настройки пользовательского
 # окружения. Его нужно выполнить от имени пользователя вторым.
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 . user.cfg.sh
 
@@ -36,6 +38,8 @@ sed -i -n -e "s/password=c/password=$DBUSER_PASS/" -e "s/password=a/password=$DB
 echo "GRANT ALL ON \`db%\`.* TO 'dbuser'@'localhost' IDENTIFIED BY '$DBUSER_PASS';" | mysql --user=root --password=""
 echo "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('$DBROOT_PASS');" | mysql --user=root --password=""
 
+echo ""
+echo "Пользовательские настройки MySQL:"
 echo "Для клиента MySQL:"
 echo "логин: dbuser"
 echo "пароль: $DBUSER_PASS"

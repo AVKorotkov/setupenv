@@ -73,7 +73,7 @@ function description() {
 function check_step() {
 	STEP_TO_CHECK=$1
 	STEP=$(tail -n1 /home/$DEB_USER/user.cfg.sh | awk '{print $2}')
-	if [ $STEP_TO_CHECK != $STEP ]
+	if [[ "$STEP_TO_CHECK" != "$STEP" ]]
 		then
 			echo "Вначале следует выполнить скрипт $STEP_TO_CHECK"
 			exit 0

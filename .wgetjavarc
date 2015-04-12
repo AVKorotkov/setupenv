@@ -1,0 +1,4 @@
+check-certificate = off
+continue = on
+cookies = off
+header = Cookie: oraclelicense=accept-securebackup-cooki

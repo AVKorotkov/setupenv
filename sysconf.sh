@@ -8,13 +8,13 @@
 DEB_USER=$(who -m | awk '{print $1}')
 SETUPENV="/home/$DEB_USER/setupenv"
 
-cp -u $SETUPENV/system.cfg.sh .
+cp $SETUPENV/system.cfg.sh .
 #cp $SETUPENV/sysconf.sh .
 #cp $SETUPENV/setup.sh .
-cp -u $SETUPENV/postconf.sh .
-cp -u $SETUPENV/softlist.txt .
-cp -u $SETUPENV/optsoftlist.txt .
-cp -u $SETUPENV/utf.cnf .
+cp $SETUPENV/postconf.sh .
+cp $SETUPENV/softlist.txt .
+cp $SETUPENV/optsoftlist.txt .
+cp $SETUPENV/utf.cnf .
 
 chown root:root system.cfg.sh postconf.sh softlist.txt optsoftlist.txt utf.cnf
 #chmod u+x system.cfg.sh postconf.sh

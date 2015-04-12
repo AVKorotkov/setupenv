@@ -51,10 +51,7 @@ fi
 DOWNLOAD_FILE=$(echo $DOWNLOAD_URL | cut -d / -f 8)
 # jdk-8u40-linux-i586.tar.gz
 
-WGET_OPTS="-c --header='Cookie: oraclelicense=accept-securebackup-cookie' --no-check-certificate --no-cookies"
-
-wget $(echo -n $WGET_OPTS) -O $DOWNLOAD_FILE $DOWNLOAD_URL
-
+wget --config=.wgetjavarc -O $DOWNLOAD_FILE $DOWNLOAD_URL
 #wget -c --header="Cookie: oraclelicense=accept-securebackup-cookie" -O $DOWNLOAD_FILE $DOWNLOAD_URL
 
 echo "Скачивание Oracle JDK завершено."

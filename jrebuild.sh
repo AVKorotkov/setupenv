@@ -5,8 +5,6 @@
 # Запускается из скрипта userconf.sh
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-WGETRC=".wgetjavarc"
-
 echo "Скачивание Oracle JRE..."
 
 if [[ "$(echo "$0" | sed 's/.*\///g')" != "userconf.sh" ]]
@@ -43,7 +41,7 @@ if [ "$ARCH" = "x86_64" ]
 		DOWNLOAD_FILE="jre-$(echo -n $JRE_VERSION)u$JRE_UPDATE-linux-i586.tar.gz"
 fi
 
-wget -O $DOWNLOAD_FILE $DOWNLOAD_URL
+wget --config=.wgetjavarc -O $DOWNLOAD_FILE $DOWNLOAD_URL
 
 echo "Скачивание Oracle JRE завершено."
 echo ""

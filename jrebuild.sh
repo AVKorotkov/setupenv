@@ -7,7 +7,7 @@
 
 echo "Скачивание Oracle JRE..."
 
-if [[ "$(echo "$0" | sed 's/.*\///g')" != "userconf.sh" ]]
+if [[ "$(basename $0)" != "userconf.sh" ]]
 	then
 		echo "Этот скрипт вызывается из userconf.sh. Завершаем..."
 		exit 0
@@ -48,7 +48,8 @@ echo ""
 echo "Создание deb-пакета Oracle JRE..."
 echo ""
 
-make-jpkg $DOWNLOAD_FILE | yes
+make-jpkg $DOWNLOAD_FILE
 
+echo ""
 echo "Создание deb-пакета Oracle JRE завершено."
 echo ""

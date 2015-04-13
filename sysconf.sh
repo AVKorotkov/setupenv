@@ -96,6 +96,33 @@ fi
 # aptitude -F %p search linux-headers-3.1 | sed -n -e 's/ //gp' | egrep '586$'
 # aptitude -F %p search linux-image-3.1 | sed -n -e 's/ //gp' | egrep '586$'
 
+
+
+
+
+aleksey@debian:~$ aptitude -F %p search linux-headers-3.1 | sed -n -e 's/ //gp' | egrep 'pae$'
+linux-headers-3.16.0-0.bpo.4-686-pae
+aleksey@debian:~$ aptitude -F %p search linux-headers-3.2 | sed -n -e 's/ //gp' | egrep 'pae$'
+linux-headers-3.2.0-4-686-pae
+linux-headers-3.2.0-4-rt-686-pae
+aleksey@debian:~$ aptitude -F %p search linux-image-3.2 | sed -n -e 's/ //gp' | egrep 'pae$'
+linux-image-3.2.0-4-686-pae
+linux-image-3.2.0-4-rt-686-pae
+aleksey@debian:~$ uname -a
+Linux debian 3.16.0-0.bpo.4-686-pae #1 SMP Debian 3.16.7-ckt7-1~bpo70+1 (2015-04-07) i686 GNU/Linux
+aleksey@debian:~$ uname -a | cut -f 3
+Linux debian 3.16.0-0.bpo.4-686-pae #1 SMP Debian 3.16.7-ckt7-1~bpo70+1 (2015-04-07) i686 GNU/Linux
+aleksey@debian:~$ uname -a | awk '{print $3}'
+3.16.0-0.bpo.4-686-pae
+
+
+
+
+
+
+
+
+
 aptitude -t wheezy-backports install $KERNEL $HEADERS -yq
 echo "Установка последнего ядра и пакета заголовков завершена."
 

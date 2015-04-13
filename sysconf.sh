@@ -104,13 +104,6 @@ echo "Установка последнего ядра и пакета заго�
 echo "Начало установки ПО..."
 DEB_LIST=$(cat softlist.txt)
 aptitude -t wheezy-backports install $DEB_LIST -yq
-
-# добавить
-# rsync
-# xfce4-xkb-plugin
-# gksu
-# gedit
-
 echo "Установка ПО завершена."
 
 # настройка MySQL на использование UTF-8
@@ -132,8 +125,8 @@ case "$READCHAR" in
 		echo "Начало установки дополнительного ПО..."
 		DEB_LIST=$(cat optsoftlist.txt)
 		aptitude -t wheezy-backports install $DEB_LIST -yq
-		aptitude -t wheezy-backports install libreoffice-writer2latex -yq
-		aptitude -t wheezy-backports install libreoffice-writer2xhtml -yq
+# 		aptitude -t wheezy-backports install libreoffice-writer2latex -yq
+# 		aptitude -t wheezy-backports install libreoffice-writer2xhtml -yq
 		dpkg -i /home/$DEB_USER/rstudio*.deb
 		echo "Установка дополнительного ПО завершена."
 		;;

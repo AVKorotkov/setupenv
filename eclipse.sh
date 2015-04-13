@@ -36,7 +36,7 @@ if ! [[ -d ".local/share/applications" ]]
 		mkdir .local/share/applications
 fi
 
-sed -i -n -e "s/Icon=~/Icon=\/home\/$DEB_USER/" -e "p" eclipse.desktop
+sed -i -n -e "s/~/\/home\/$USER/" -e "p" eclipse.desktop
 mv eclipse.desktop ~/.local/share/applications/
 ln -s ~/src/eclipse/eclipse ~/bin/eclipse
 cp ~/src/eclipse/eclipse.ini ~/src/eclipse/eclipse.ini.original

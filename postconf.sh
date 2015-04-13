@@ -11,7 +11,7 @@ check_debian
 check_step "userconf.sh"
 ask_for_continue
 
-DEBIAN_FRONTEND=noninteractive 
+# DEBIAN_FRONTEND=noninteractive 
 # DEBCONF_NOWARNINGS="yes"
 # DEBCONF_NONINTERACTIVE_SEEN=true
 

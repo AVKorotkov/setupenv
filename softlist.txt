@@ -50,3 +50,4 @@ geeqie
 gedit
 gksu
 rsync
+xxkb

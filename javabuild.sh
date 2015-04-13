@@ -61,7 +61,7 @@ echo ""
 echo "Создание deb-пакета Oracle JDK..."
 echo ""
 
-make-jpkg $DOWNLOAD_FILE
+yes | make-jpkg $DOWNLOAD_FILE
 
 echo ""
 echo "Создание deb-пакета Oracle JDK завершено."

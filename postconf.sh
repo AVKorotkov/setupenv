@@ -11,15 +11,17 @@ check_debian
 check_step "userconf.sh"
 ask_for_continue
 
-# DEBIAN_FRONTEND=noninteractive 
+DEBIAN_FRONTEND=noninteractive 
 # DEBCONF_NOWARNINGS="yes"
 # DEBCONF_NONINTERACTIVE_SEEN=true
 
 # Настройка времени
 
-echo "tzdata tzdata/Areas select Europe" | debconf-set-selections
-echo "tzdata tzdata/Zones/Europe select Samara" | debconf-set-selections
-dpkg-reconfigure -f noninteractive tzdata
+# echo "tzdata tzdata/Areas select Europe" | debconf-set-selections
+# echo "tzdata tzdata/Zones/Europe select Samara" | debconf-set-selections
+sed -i 's/Moscow/Samara/' /etc/timezone
+# dpkg-reconfigure -f noninteractive tzdata
+dpkg-reconfigure tzdata
 
 # Установка Java
 
@@ -56,7 +58,8 @@ fi
 DBROOT_PASS=$(grep -A1 'user=root' /home/$DEB_USER/.my.cnf | tail -n 1 | awk -F= '{print $2}')
 echo "mysql-server-5.5 mysql-server/root_password select $DBROOT_PASS" | debconf-set-selections
 echo "mysql-server-5.5 mysql-server/root_password_again select $DBROOT_PASS" | debconf-set-selections
-dpkg-reconfigure -f noninteractive mysql-server-5.5
+# dpkg-reconfigure -f noninteractive mysql-server-5.5
+dpkg-reconfigure mysql-server-5.5
 
 step_write
 

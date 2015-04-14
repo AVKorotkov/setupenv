@@ -37,6 +37,11 @@
 
 ![][xfceout]
 
+Например, для выключения виртуальной машины следует выбрать пункт
+"Выключить".
+
+![][xfceoff]
+
 Запустить терминал.
 
 Выполнить команды:
@@ -122,3 +127,4 @@
 [dmpass]: config/config-03.png "Lightdm пароль"
 [xfcein]: config/config-04.png "XFCE загружен"
 [xfceout]: config/config-05.png "XFCE выход"
+[xfceoff]: config/config-06.png "XFCE выключение"

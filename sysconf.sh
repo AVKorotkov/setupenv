@@ -3,14 +3,10 @@
 # Этот скрипт делает настройку системы. Его
 # нужно суперпользователю выполнить первым.
 
-#DEB_USER=$(grep 1000 /etc/passwd | awk -F: '{print $1}')
-
 DEB_USER=$(who -m | awk '{print $1}')
 SETUPENV="/home/$DEB_USER/setupenv"
 
 cp $SETUPENV/system.cfg.sh .
-#cp $SETUPENV/sysconf.sh .
-#cp $SETUPENV/setup.sh .
 cp $SETUPENV/postconf.sh .
 cp $SETUPENV/softlist.txt .
 cp $SETUPENV/optsoftlist.txt .
@@ -29,15 +25,6 @@ ask_for_continue
 
 echo "DEB_USER=\"$DEB_USER\"" >> system.cfg.sh
 echo "SETUPENV=\"$SETUPENV\"" >> system.cfg.sh
-
-#
-#. system.cfg.sh
-#
-#description
-#check_root
-#check_debian
-#check_step "presys.sh"
-#
 
 # настройка репозиториев
 
@@ -64,9 +51,6 @@ gpg --export -a 06C4AE2A | apt-key add -
 
 apt-key adv --keyserver keys.gnupg.net --recv-key 381BA480
 
-#wget -c http://mozilla.debian.net/pkg-mozilla-archive-keyring_1.1_all.deb
-#dpkg -i pkg-mozilla-archive-keyring_1.1_all.deb
-
 # обновление списка пакетов
 
 echo "Обновление списка пакетов..."
@@ -79,9 +63,9 @@ echo "Обновление системы..."
 aptitude safe-upgrade -yq
 echo "Обновление системы завершено."
 
-# установка последнего ядра и пакета заголовков
+# установка последнего ядра и пакетов заголовков
 
-echo "Установка последнего ядра и пакета заголовков..."
+echo "Установка последнего ядра и пакетов заголовков..."
 
 ARCH=$(uname -m)
 if [ "$ARCH" = "x86_64" ]
@@ -93,37 +77,9 @@ if [ "$ARCH" = "x86_64" ]
 		HEADERS=$(aptitude -F %p search linux-headers-3.1 | sed -n -e 's/ //gp' | egrep 'pae$')
 fi
 
-# aptitude -F %p search linux-headers-3.1 | sed -n -e 's/ //gp' | egrep '586$'
-# aptitude -F %p search linux-image-3.1 | sed -n -e 's/ //gp' | egrep '586$'
+CURRENT_HEADERS=$(aptitude -F %p search linux-headers | grep $(uname -a | awk '{print $3}'))
 
-
-
-
-
-aleksey@debian:~$ aptitude -F %p search linux-headers-3.1 | sed -n -e 's/ //gp' | egrep 'pae$'
-linux-headers-3.16.0-0.bpo.4-686-pae
-aleksey@debian:~$ aptitude -F %p search linux-headers-3.2 | sed -n -e 's/ //gp' | egrep 'pae$'
-linux-headers-3.2.0-4-686-pae
-linux-headers-3.2.0-4-rt-686-pae
-aleksey@debian:~$ aptitude -F %p search linux-image-3.2 | sed -n -e 's/ //gp' | egrep 'pae$'
-linux-image-3.2.0-4-686-pae
-linux-image-3.2.0-4-rt-686-pae
-aleksey@debian:~$ uname -a
-Linux debian 3.16.0-0.bpo.4-686-pae #1 SMP Debian 3.16.7-ckt7-1~bpo70+1 (2015-04-07) i686 GNU/Linux
-aleksey@debian:~$ uname -a | cut -f 3
-Linux debian 3.16.0-0.bpo.4-686-pae #1 SMP Debian 3.16.7-ckt7-1~bpo70+1 (2015-04-07) i686 GNU/Linux
-aleksey@debian:~$ uname -a | awk '{print $3}'
-3.16.0-0.bpo.4-686-pae
-
-
-
-
-
-
-
-
-
-aptitude -t wheezy-backports install $KERNEL $HEADERS -yq
+aptitude -t wheezy-backports install $KERNEL $HEADERS $CURRENT_HEADERS -yq
 echo "Установка последнего ядра и пакета заголовков завершена."
 
 # Установка ПО
@@ -152,8 +108,6 @@ case "$READCHAR" in
 		echo "Начало установки дополнительного ПО..."
 		DEB_LIST=$(cat optsoftlist.txt)
 		aptitude -t wheezy-backports install $DEB_LIST -yq
-# 		aptitude -t wheezy-backports install libreoffice-writer2latex -yq
-# 		aptitude -t wheezy-backports install libreoffice-writer2xhtml -yq
 		dpkg -i /home/$DEB_USER/rstudio*.deb
 		echo "Установка дополнительного ПО завершена."
 		;;

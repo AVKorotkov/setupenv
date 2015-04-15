@@ -49,6 +49,12 @@ echo "логин: root"
 echo "пароль: $DBROOT_PASS"
 echo ""
 
+# Перемещение тестового PHP-скрипта в каталог веб-сервера
+
+chmod 661 info.php
+chown root:www-data info.php
+mv info.php /var/www/
+
 step_write
 
 this_is_done

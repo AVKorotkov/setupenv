@@ -61,6 +61,11 @@ echo "mysql-server-5.5 mysql-server/root_password_again select $DBROOT_PASS" | d
 # dpkg-reconfigure -f noninteractive mysql-server-5.5
 dpkg-reconfigure mysql-server-5.5
 
+# Установка прав на каталог веб-сервера
+
+chgrp -R www-data /var/www
+chmod g+w /var/www/
+
 step_write
 
 this_is_done

@@ -41,7 +41,7 @@ fi
 
 echo "Обновление репозитория завершено."
 
-for i in $(ls -A . | egrep '(sh|desktop|cnf|rc)$')
+for i in $(ls -A . | egrep '(sh|desktop|cnf|rc|php)$')
 	do cp $i ~
 done
 

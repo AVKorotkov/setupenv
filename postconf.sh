@@ -66,6 +66,12 @@ dpkg-reconfigure mysql-server-5.5
 chgrp -R www-data /var/www
 chmod g+w /var/www/
 
+# Перемещение тестового PHP-скрипта в каталог веб-сервера
+
+mv /home/$DEB_USER/info.php /var/www/
+chmod 661 /var/www/info.php
+chown root:www-data /var/www/info.php
+
 step_write
 
 this_is_done

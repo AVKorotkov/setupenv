@@ -1,7 +1,9 @@
 #!/bin/bash
 
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Этот скрипт завершает настройку системы. Его
 # нужно суперпользователю выполнить последним.
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 . system.cfg.sh
 
@@ -11,16 +13,9 @@ check_debian
 check_step "userconf.sh"
 ask_for_continue
 
-# DEBIAN_FRONTEND=noninteractive 
-# DEBCONF_NOWARNINGS="yes"
-# DEBCONF_NONINTERACTIVE_SEEN=true
-
 # Настройка времени
 
-# echo "tzdata tzdata/Areas select Europe" | debconf-set-selections
-# echo "tzdata tzdata/Zones/Europe select Samara" | debconf-set-selections
 sed -i 's/Moscow/Samara/' /etc/timezone
-# dpkg-reconfigure -f noninteractive tzdata
 dpkg-reconfigure tzdata
 
 # Установка Java

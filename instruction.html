@@ -638,7 +638,7 @@ $ ./preuser.sh</code></pre>
 <li>настраивает репозитории с ПО,</li>
 <li>обновляет список пакетов,</li>
 <li>делает обновление системы,</li>
-<li>устанавливает последнее ядро и пакет заголовков,</li>
+<li>устанавливает последнее ядро и пакеты заголовков,</li>
 <li>устанавливает ПО,</li>
 <li>устанавливает дополнительного ПО (по желанию),</li>
 <li>добавляет пользователя в нужные группы,</li>
@@ -667,6 +667,71 @@ $ ./preuser.sh</code></pre>
 </ul>
 <p>На этом первоначальную настройку системы можно считать законченной.</p>
 <h3 id="настройка-mysql-workbench-и-eclipse">Настройка <code>MySQL Workbench</code> и <code>Eclipse</code></h3>
+<p>Запустить на выполнение <code>Eclipse</code>, вызвав из меню <code>XFCE</code>. Выбрать в меню <code>Help -&gt; Check for Updates</code>.</p>
+<div class="figure">
+<img src="eclipse/01.png" title="Check for Updates" />
+
+</div>
+<p><code>Eclipse</code> проверяет наличие обновлений установленных компонентов, и при условии их наличия, скачивает их и устаноавливает.</p>
+<div class="figure">
+<img src="eclipse/02.png" title="Updates" />
+
+</div>
+<p>Далее необходимо установить компонент <code>ERMaster</code>. Для этого выбрать в меню <code>Help -&gt; Install New Software</code>.</p>
+<div class="figure">
+<img src="eclipse/03.png" title="Install New Software" />
+
+</div>
+<p>Нажать кнопку <code>Add...</code></p>
+<div class="figure">
+<img src="eclipse/04.png" title="Select Add" />
+
+</div>
+<p>Появится окно для добавления нового репозитория.</p>
+<div class="figure">
+<img src="eclipse/05.png" title="Add Repository" />
+
+</div>
+<p>В поле <code>Name</code> указать <code>ERMaster</code>, в поле <code>Location</code> — его <a href="http://ermaster.sourceforge.net/update-site/" title="Репозиторий ERMaster">адрес</a>, нажать <code>OK</code>.</p>
+<div class="figure">
+<img src="eclipse/06.png" title="Name and Location of Repository" />
+
+</div>
+<p><code>Eclipse</code> проверяет наличие компонентов по указанному адресу.</p>
+<div class="figure">
+<img src="eclipse/07.png" title="Available Software" />
+
+</div>
+<p>После того как информайия об имеющихся компонентах будет загружена, следует нажать кнопку <code>Selact All</code>, потом <code>Next</code>.</p>
+<div class="figure">
+<img src="eclipse/08.png" title="Select Software" />
+
+</div>
+<p>Появляется следующее окно с детальной информацией об устанавливаемых компонентах. Нажать кнопку <code>Next</code>.</p>
+<div class="figure">
+<img src="eclipse/09.png" title="Install Details" />
+
+</div>
+<p>Принять условия лицензии, выбрав значение переключателя <code>I accept the terms of the license agreement</code>. Нажать кнопку <code>Finish</code>.</p>
+<div class="figure">
+<img src="eclipse/10.png" title="Review Licences" />
+
+</div>
+<p>Появляется окно с информацией об установке компонент.</p>
+<div class="figure">
+<img src="eclipse/11.png" title="Installing Software" />
+
+</div>
+<p>В окне <code>Security Warning</code> появляется информация об установке неподписанного содержимого. Подтвердить согласие на установку, нажав кнопку <code>OK</code>.</p>
+<div class="figure">
+<img src="eclipse/12.png" title="Security Warning" />
+
+</div>
+<p>После установки ПО появляется сообщение о том, что необходимо перезапустить <code>Eclipse</code> для того, чтобы изменения вступили в силу. Нажать <code>Yes</code>.</p>
+<div class="figure">
+<img src="eclipse/13.png" title="Software Updates" />
+
+</div>
 <h2 id="заключение">Заключение</h2>
 <p>В процессе написания…</p>
 </body>

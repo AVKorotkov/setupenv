@@ -133,3 +133,81 @@
 
 ### Настройка `MySQL Workbench` и `Eclipse` ###
 
+Запустить на выполнение `Eclipse`, вызвав из меню `XFCE`. Выбрать в
+меню `Help -> Check for Updates`.
+
+![][eclchupd]
+
+`Eclipse` проверяет наличие обновлений установленных компонентов, и при
+условии их наличия, скачивает их и устаноавливает.
+
+![][eclupd]
+
+Далее необходимо установить компонент `ERMaster`. Для этого выбрать в
+меню `Help -> Install New Software`.
+
+![][eclnew]
+
+Нажать кнопку `Add...`
+
+![][ecladdsel]
+
+Появится окно для добавления нового репозитория.
+
+![][ecladdrepo]
+
+В поле `Name` указать `ERMaster`, в поле `Location` --- его
+[адрес][ermaster], нажать `OK`.
+
+[ermaster]: http://ermaster.sourceforge.net/update-site/ "Репозиторий ERMaster"
+
+![][eclrepoloc]
+
+`Eclipse` проверяет наличие компонентов по указанному адресу.
+
+![][eclavail]
+
+После того как информайия об имеющихся компонентах будет загружена,
+следует нажать кнопку `Selact All`, потом `Next`.
+
+![][eclselsoft]
+
+Появляется следующее окно с детальной информацией об устанавливаемых
+компонентах. Нажать кнопку `Next`.
+
+![][eclinstdet]
+
+Принять условия лицензии, выбрав значение переключателя
+`I accept the terms of the license agreement`. Нажать кнопку `Finish`.
+
+![][ecllic]
+
+Появляется окно с информацией об установке компонент.
+
+![][eclinst]
+
+В окне `Security Warning` появляется информация об установке
+неподписанного содержимого. Подтвердить согласие на установку, нажав
+кнопку `OK`.
+
+![][eclwarn]
+
+После установки ПО появляется сообщение о том, что необходимо
+перезапустить `Eclipse` для того, чтобы изменения вступили в силу.
+Нажать `Yes`.
+
+![][eclrest]
+
+[eclchupd]: eclipse/01.png "Check for Updates"
+[eclupd]: eclipse/02.png "Updates"
+[eclnew]: eclipse/03.png "Install New Software"
+[ecladdsel]: eclipse/04.png "Select Add"
+[ecladdrepo]: eclipse/05.png "Add Repository"
+[eclrepoloc]: eclipse/06.png "Name and Location of Repository"
+[eclavail]: eclipse/07.png "Available Software"
+[eclselsoft]: eclipse/08.png "Select Software"
+[eclinstdet]: eclipse/09.png "Install Details"
+[ecllic]: eclipse/10.png "Review Licences"
+[eclinst]: eclipse/11.png "Installing Software"
+[eclwarn]: eclipse/12.png "Security Warning"
+[eclrest]: eclipse/13.png "Software Updates"

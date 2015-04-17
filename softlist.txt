@@ -4,6 +4,7 @@ mc
 xfce4-clipman
 xfce4-screenshooter
 iceweasel
+iceweasel-l10n-ru
 fonts-liberation
 ttf-mscorefonts-installer
 build-essential

@@ -69,3 +69,4 @@ r-cran-rpart
 r-cran-spatial
 r-cran-survival
 libjpeg62
+oxygencursors

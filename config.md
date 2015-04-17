@@ -133,7 +133,7 @@
 
 ### Настройка `MySQL Workbench` и `Eclipse` ###
 
-Запустить на выполнение `MySQL Workbench`.
+Запустить на выполнение `MySQL Workbench`. В процессе написания...
 
 Запустить на выполнение `Eclipse`, вызвав из меню `XFCE`. В `Eclipse
 выбрать в меню `Help -> Check for Updates`.

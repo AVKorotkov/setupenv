@@ -48,12 +48,13 @@ elif [ "$JAVA_JRE_ORACLE" != "" ]
 		update-alternatives --set javaws $JAVAWS_JRE_ORACLE
 fi
 
-# настройка MySQL: установка пароля root через debconf
+# настройка MySQL
 
 DBROOT_PASS=$(grep -A1 'user=root' /home/$DEB_USER/.my.cnf | tail -n 1 | awk -F= '{print $2}')
 echo "mysql-server-5.5 mysql-server/root_password select $DBROOT_PASS" | debconf-set-selections
 echo "mysql-server-5.5 mysql-server/root_password_again select $DBROOT_PASS" | debconf-set-selections
 # dpkg-reconfigure -f noninteractive mysql-server-5.5
+mv mode.cnf /etc/mysql/conf.d/
 dpkg-reconfigure mysql-server-5.5
 
 # Установка прав на каталог веб-сервера

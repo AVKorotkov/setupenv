@@ -110,6 +110,7 @@ case "$READCHAR" in
 		echo "Начало установки дополнительного ПО..."
 		DEB_LIST=$(cat optsoftlist.txt)
 		aptitude -t wheezy-backports install $DEB_LIST -yq
+		# TODO сделать проверку на наличие файла
 		dpkg -i /home/$DEB_USER/rstudio*.deb
 		echo "Установка дополнительного ПО завершена."
 		;;

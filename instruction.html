@@ -8,6 +8,7 @@
   <meta name="date" content="2015-01-01" />
   <title>Инструкция по установке и настройке рабочей среды</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="main.css" type="text/css" />
 </head>
 <body>
 <div id="header">
@@ -26,6 +27,7 @@
 <li><a href="#конфигурирование-системы-и-по">Конфигурирование системы и ПО</a><ul>
 <li><a href="#начальная-настройка-системы">Начальная настройка системы</a></li>
 <li><a href="#настройка-mysql-workbench-и-eclipse">Настройка <code>MySQL Workbench</code> и <code>Eclipse</code></a></li>
+<li><a href="#проверка-работы-apache-и-php">Проверка работы <code>Apache</code> и <code>PHP</code></a></li>
 </ul></li>
 <li><a href="#заключение">Заключение</a></li>
 </ul>
@@ -664,7 +666,52 @@ $ ./preuser.sh</code></pre>
 </ul>
 <p>На этом первоначальную настройку системы можно считать законченной.</p>
 <h3 id="настройка-mysql-workbench-и-eclipse">Настройка <code>MySQL Workbench</code> и <code>Eclipse</code></h3>
-<p>Запустить на выполнение <code>MySQL Workbench</code>. В процессе написания…</p>
+<p>Запустить на выполнение <code>MySQL Workbench</code>. Появится начальное окно программы:</p>
+<div class="figure">
+<img src="workbench/main-001.png" title="Начальное окно" />
+
+</div>
+<p>Следует выбрать в меню <code>Edit -&gt; Preferences...</code>:</p>
+<div class="figure">
+<img src="workbench/pref-001.png" title="Настройки" />
+
+</div>
+<p>Далее нужно перейти на вкладку <code>SQL Editor</code>:</p>
+<div class="figure">
+<img src="workbench/pref-002.png" title="Настройки SQL Editor" />
+
+</div>
+<p>и вписать в поле <code>Default SQL_MODE</code> значение <code>TRADITIONAL</code>:</p>
+<div class="figure">
+<img src="workbench/pref-003.png" title="Настройки SQL_MODE" />
+
+</div>
+<p>Нажать <code>OK</code>. Остальные настройки можно оставить по умолчанию.</p>
+<p>В главном окне программы выбрать в меню <code>Database -&gt; Manage  Connections...</code>:</p>
+<div class="figure">
+<img src="workbench/conn-001.png" title="Соединения" />
+
+</div>
+<p>В появившемся диалоговом окне нажать кнопку <code>New</code>:</p>
+<div class="figure">
+<img src="workbench/conn-002.png" title="Новое соединение" />
+
+</div>
+<p>В поле <code>Connection Name</code> вписать <code>localhost</code>, в <code>Username</code> — <code>dbuser</code>:</p>
+<div class="figure">
+<img src="workbench/conn-003.png" title="Имя оединения и пользователя" />
+
+</div>
+<p>После этого нажать кнопку <code>Test Connection</code>. Если всё было сделано правильно, то должно появиться сообщение, что тест пройден успешно:</p>
+<div class="figure">
+<img src="workbench/conn-004.png" title="Тестирование соединения" />
+
+</div>
+<p>Нажать кнопки <code>OK</code>, затем <code>Close</code> и убедиться, что созданное соединение присутствует в списке:</p>
+<div class="figure">
+<img src="workbench/conn-005.png" title="Готово" />
+
+</div>
 <p>Запустить на выполнение <code>Eclipse</code>, вызвав из меню <code>XFCE</code>. В <code>Eclipse выбрать в меню</code>Help -&gt; Check for Updates`.</p>
 <div class="figure">
 <img src="eclipse/01.png" title="Check for Updates" />
@@ -730,7 +777,22 @@ $ ./preuser.sh</code></pre>
 <img src="eclipse/13.png" title="Software Updates" />
 
 </div>
+<h3 id="проверка-работы-apache-и-php">Проверка работы <code>Apache</code> и <code>PHP</code></h3>
+<p>Запустить браузер, например, <code>Iceweasel</code> (ребрендированный в <code>Debian</code> по лицензионным соображениям <code>Firefox</code>) и открыть главную страницу сервера <code>Apache</code>, вписав в строку адреса <a href="http://localhost/" title="Адрес локального хоста">localhost</a>, после чего нажать <code>Enter</code>.</p>
+<p>В окне браузера должна появиться начальная страница <code>Apache</code> (служит только для проверки его работоспособности):</p>
+<div class="figure">
+<img src="apache/01.png" title="Начальная страница Apache" />
+
+</div>
+<p>После этого нужно проверить работу модуля <code>PHP</code> сервера <code>Apache</code>. Для этого в строке адреса браузера ввести <a href="http://localhost/info.php" title="Проверка работы phpinfo()">адрес</a> скрипта проверки:</p>
+<div class="figure">
+<img src="apache/02.png" title="Проверка работы модуля PHP с помощью phpinfo()" />
+
+</div>
+<p>Результат должен быть примерно такой, как на данном снимке экрана.</p>
 <h2 id="заключение">Заключение</h2>
-<p>В процессе написания…</p>
+<p>На этом необходимые настройки программной среды для проведения лабораторных работ по курсу “Базы данных” можно считать законченными.</p>
+<p>Другие настройки программного обеспечения выполняются по желанию и зависят от предпочтений выбора того или иного ПО при выполнении работ (например, писать код программ можно в любом из имеющихся на выбор редакторов или IDE, настраивая их в соответствии с собственными предпочтениями).</p>
+<p>Описание настроек системного характера (обеспечение безопасности, обновление программных компонентов и т.д.) не входило в задачи данного руководства. Для этого следует пользоваться официальной документацией проекта <code>Debian</code>, ссылки на которую имеются в разделе “Введение”.</p>
 </body>
 </html>

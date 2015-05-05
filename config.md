@@ -133,7 +133,57 @@
 
 ### Настройка `MySQL Workbench` и `Eclipse` ###
 
-Запустить на выполнение `MySQL Workbench`. В процессе написания...
+Запустить на выполнение `MySQL Workbench`. Появится начальное окно 
+программы:
+
+![][mwmain]
+
+Следует выбрать в меню `Edit -> Preferences...`:
+
+![][mwpref]
+
+Далее нужно перейти на вкладку `SQL Editor`:
+
+![][mwprefed]
+
+и вписать в поле `Default SQL_MODE` значение `TRADITIONAL`:
+
+![][mwprefmode]
+
+Нажать `OK`. Остальные настройки можно оставить по умолчанию.
+
+В главном окне программы выбрать в меню `Database -> Manage 
+Connections...`:
+
+![][mwconn]
+
+В появившемся диалоговом окне нажать кнопку `New`:
+
+![][mwnewconn]
+
+В поле `Connection Name` вписать `localhost`, в `Username` --- `dbuser`:
+
+![][mwconnname]
+
+После этого нажать кнопку `Test Connection`. Если всё было сделано 
+правильно, то должно появиться сообщение, что тест пройден успешно:
+
+![][mwconntest]
+
+Нажать кнопки `OK`, затем `Close` и убедиться, что созданное соединение 
+присутствует в списке:
+
+![][mwconnready]
+
+[mwmain]: workbench/main-001.png "Начальное окно"
+[mwpref]: workbench/pref-001.png "Настройки"
+[mwprefed]: workbench/pref-002.png "Настройки SQL Editor"
+[mwprefmode]: workbench/pref-003.png "Настройки SQL_MODE"
+[mwconn]: workbench/conn-001.png "Соединения"
+[mwnewconn]: workbench/conn-002.png "Новое соединение"
+[mwconnname]: workbench/conn-003.png "Имя оединения и пользователя"
+[mwconntest]: workbench/conn-004.png "Тестирование соединения"
+[mwconnready]: workbench/conn-005.png "Готово"
 
 Запустить на выполнение `Eclipse`, вызвав из меню `XFCE`. В `Eclipse
 выбрать в меню `Help -> Check for Updates`.
@@ -213,3 +263,31 @@
 [eclinst]: eclipse/11.png "Installing Software"
 [eclwarn]: eclipse/12.png "Security Warning"
 [eclrest]: eclipse/13.png "Software Updates"
+
+### Проверка работы `Apache` и `PHP` ###
+
+Запустить браузер, например, `Iceweasel` (ребрендированный в `Debian` по 
+лицензионным соображениям `Firefox`) и открыть главную страницу сервера
+`Apache`, вписав в строку адреса [localhost][localhost], после чего
+нажать `Enter`.
+
+[localhost]: http://localhost/ "Адрес локального хоста"
+
+В окне браузера должна появиться начальная страница `Apache` (служит 
+только для проверки его работоспособности):
+
+![][apache]
+
+После этого нужно проверить работу модуля `PHP` сервера `Apache`. Для
+этого в строке адреса браузера ввести [адрес][apachephp] скрипта
+проверки:
+
+![][phpinfo]
+
+[apachephp]: http://localhost/info.php "Проверка работы phpinfo()"
+
+Результат должен быть примерно такой, как на данном снимке экрана.
+
+[apache]: apache/01.png "Начальная страница Apache"
+[phpinfo]: apache/02.png "Проверка работы модуля PHP с помощью phpinfo()"
+

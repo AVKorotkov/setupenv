@@ -34,6 +34,7 @@ DBUSER_PASS="$(makepasswd --chars=8)"
 DBROOT_PASS="$(makepasswd --chars=8)"
 
 sed -i -n -e "s/password=c/password=$DBUSER_PASS/" -e "s/password=a/password=$DBROOT_PASS/" -e "p" .my.cnf
+sed -i "/\[mysqldump\]/a result_file=\/home\/$USER\/dump.sql" .my.cnf
 
 echo "GRANT ALL ON \`db%\`.* TO 'dbuser'@'localhost' IDENTIFIED BY '$DBUSER_PASS';" | mysql --user=root --password=""
 echo "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('$DBROOT_PASS');" | mysql --user=root --password=""

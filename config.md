@@ -185,7 +185,7 @@ Connections...`:
 [mwconntest]: workbench/conn-004.png "Тестирование соединения"
 [mwconnready]: workbench/conn-005.png "Готово"
 
-Запустить на выполнение `Eclipse`, вызвав из меню `XFCE`. В `Eclipse
+Запустить на выполнение `Eclipse`, вызвав из меню `XFCE`. В `Eclipse`
 выбрать в меню `Help -> Check for Updates`.
 
 ![][eclchupd]

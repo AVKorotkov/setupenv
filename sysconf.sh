@@ -13,8 +13,9 @@ cp $SETUPENV/postconf.sh .
 cp $SETUPENV/softlist.txt .
 cp $SETUPENV/optsoftlist.txt .
 cp $SETUPENV/utf.cnf .
+cp $SETUPENV/event.cnf .
 
-chown root:root system.cfg.sh postconf.sh softlist.txt optsoftlist.txt utf.cnf
+chown root:root system.cfg.sh postconf.sh softlist.txt optsoftlist.txt utf.cnf event.cnf
 #chmod u+x system.cfg.sh postconf.sh
 
 . system.cfg.sh
@@ -91,9 +92,9 @@ DEB_LIST=$(cat softlist.txt)
 aptitude -t wheezy-backports install $DEB_LIST -yq
 echo "Установка ПО завершена."
 
-# настройка MySQL на использование UTF-8
-
+# настройка MySQL на использование UTF-8 и Event Scheduler
 mv utf.cnf /etc/mysql/conf.d/
+mv event.cnf /etc/mysql/conf.d/
 service mysql stop
 service mysql start
 

@@ -70,3 +70,16 @@ r-cran-spatial
 r-cran-survival
 libjpeg62
 oxygencursors
+kile
+kile-doc
+aspell
+aspell-en
+aspell-fr
+aspell-ru
+hunspell
+hunspell-en-us
+hunspell-fr
+hunspell-fr-classical
+hunspell-ru
+hunspell-tools
+ispell

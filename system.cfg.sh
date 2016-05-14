@@ -20,6 +20,14 @@ function check_root() {
 	fi
 }
 
+# 
+# альтернативный вариант
+# if [[ $EUID -ne 0 ]]; then
+#     echo "This script must be run as root"
+#     exit 1
+# fi
+# 
+
 function check_debian() {
 	DISTRIBUTOR=$(lsb_release -i | cut -f 2)
 	CODENAME=$(lsb_release -c | cut -f 2)

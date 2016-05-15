@@ -70,8 +70,15 @@ r-cran-spatial
 r-cran-survival
 libjpeg62
 oxygencursors
+dvipng
+ghostscript
+imagemagick
+psutils
+konsole
+kde-runtime
 kile
 kile-doc
+kile-l10n
 aspell
 aspell-en
 aspell-fr

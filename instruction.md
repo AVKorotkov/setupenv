@@ -32,7 +32,7 @@
 При настройке установленной ОС рекомендуется пользоваться официальным
 [руководством][dahb] администратора.
 
-[dahb]: http://debian-handbook.info/ The Debian Administrator's Handbook
+[dahb]: http://debian-handbook.info/ "The Debian Administrator's Handbook"
 
 Далее установка `Debian` рассматривается на примере инсталляции версии
 для архитектуры i386 в `VirtualBox`.
